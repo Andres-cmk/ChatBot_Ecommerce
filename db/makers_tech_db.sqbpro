@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/ramir/Desktop/ChatBot/db/makers_tech_db.sqlite3" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="177"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title=".Browsables" custom_title="0" dock_id="1" table="0,10:Browsables"/><dock_state state="000000ff00000000fd00000001000000020000000000000000fc0100000001fb000000160064006f0063006b00420072006f00770073006500310100000000ffffffff0000011300ffffff000000000000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1*">-- 1. Eliminar tabla si ya existe (para reiniciar)
+DROP TABLE IF EXISTS productos;
+
+-- 2. Crear la tabla de productos
+CREATE TABLE productos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre TEXT NOT NULL,
+    categoria TEXT NOT NULL,           -- Laptop, Desktop, Procesador, etc.
+    subcategoria TEXT,                 -- Más recomendado, Recomendado, Menos recomendado
+    marca TEXT,                        -- Extraída del nombre (ej: ASUS, Dell, HP)
+    cpu TEXT,                          -- Procesador
+    gpu TEXT,                          -- Tarjeta gráfica
+    ram TEXT,                          -- Memoria RAM
+    almacenamiento TEXT,               -- SSD, HDD, NVMe
+    precio INTEGER NOT NULL,           -- Precio en COP (sin comillas ni símbolos)
+    stock INTEGER DEFAULT 5,           -- Stock simulado (puedes actualizarlo después)
+    recomendacion_nivel TEXT,          -- &quot;Alta&quot;, &quot;Media&quot;, &quot;Baja&quot;
+    recomendacion_stars INTEGER,       -- 2, 4, 5 estrellas
+    uso_recomendado TEXT               -- Estudiantes, Gaming, Oficina, etc.
+);
+
+-- 3. Insertar productos: Laptops - Menos recomendadas (⭐⭐)
+INSERT INTO productos (nombre, categoria, subcategoria, marca, cpu, ram, almacenamiento, precio, recomendacion_nivel, recomendacion_stars) VALUES
+('Acer Aspire 3', 'Laptop', 'Menos Recomendada', 'Acer', 'Celeron N4020', '4GB', '128GB eMMC', 850000, 'Baja', 2),
+('HP 14&quot; Basic', 'Laptop', 'Menos Recomendada', 'HP', 'AMD 3020e', '4GB', '64GB eMMC', 920000, 'Baja', 2),
+('Lenovo IdeaPad 1', 'Laptop', 'Menos Recomendada', 'Lenovo', 'Intel N4020', '4GB', '128GB SSD', 980000, 'Baja', 2),
+('ASUS E410', 'Laptop', 'Menos Recomendada', 'ASUS', 'Intel N4020', '4GB', '128GB eMMC', 890000, 'Baja', 2),
+('Gateway Ultra Slim', 'Laptop', 'Menos Recomendada', 'Gateway', 'Intel N4020', '4GB', '64GB', 780000, 'Baja', 2);
+
+-- 4. Insertar productos: Laptops - Recomendadas (⭐⭐⭐⭐)
+INSERT INTO productos (nombre, categoria, subcategoria, marca, cpu, ram, almacenamiento, precio, recomendacion_nivel, recomendacion_stars) VALUES
+('ASUS VivoBook 15', 'Laptop', 'Recomendada', 'ASUS', 'Ryzen 5 5500U', '8GB', '512GB SSD', 2600000, 'Media', 4),
+('HP Pavilion 15', 'Laptop', 'Recomendada', 'HP', 'Intel i5-1235U', '16GB', '512GB SSD', 3200000, 'Media', 4),
+('Lenovo ThinkPad E14', 'Laptop', 'Recomendada', 'Lenovo', 'Ryzen 5 5500U', '8GB', '256GB SSD', 2800000, 'Media', 4),
+('Acer Aspire 5', 'Laptop', 'Recomendada', 'Acer', 'Ryzen 7 5700U', '16GB', '512GB SSD', 2950000, 'Media', 4),
+('Dell Inspiron 15 3000', 'Laptop', 'Recomendada', 'Dell', 'i5-1135G7', '8GB', '256GB SSD', 2700000, 'Media', 4),
+('HP Envy x360', 'Laptop', 'Recomendada', 'HP', 'Ryzen 5 5625U', '16GB', '512GB SSD', 3400000, 'Media', 4),
+('ASUS ZenBook 14', 'Laptop', 'Recomendada', 'ASUS', 'Ryzen 7 5700U', '16GB', '512GB SSD', 3800000, 'Media', 4);
+
+-- 5. Insertar productos: Laptops - Más recomendadas (⭐⭐⭐⭐⭐)
+INSERT INTO productos (nombre, categoria, subcategoria, marca, cpu, ram, almacenamiento, precio, recomendacion_nivel, recomendacion_stars, gpu) VALUES
+('MacBook Air M2', 'Laptop', 'Más Recomendada', 'Apple', 'Apple M2', '8GB', '256GB SSD', 4800000, 'Alta', 5, 'Integrada'),
+('MacBook Pro M2', 'Laptop', 'Más Recomendada', 'Apple', 'Apple M2', '16GB', '512GB SSD', 7200000, 'Alta', 5, 'Integrada'),
+('Dell XPS 13', 'Laptop', 'Más Recomendada', 'Dell', 'Intel i7-1260P', '16GB', '512GB SSD', 5400000, 'Alta', 5, 'Iris Xe'),
+('Lenovo ThinkPad X1 Carbon', 'Laptop', 'Más Recomendada', 'Lenovo', 'i7-1260P', '16GB', '1TB SSD', 6800000, 'Alta', 5, 'Iris Xe'),
+('HP Spectre x360', 'Laptop', 'Más Recomendada', 'HP', 'i7-1255U', '16GB', '1TB SSD', 5800000, 'Alta', 5, 'Iris Xe'),
+('ASUS ROG Zephyrus G14', 'Laptop', 'Más Recomendada', 'ASUS', 'Ryzen 9 6900HS', '16GB', '512GB SSD', 6500000, 'Alta', 5, 'RTX 3060'),
+('Dell Inspiron Gaming', 'Laptop', 'Más Recomendada', 'Dell', 'i7-11800H', '16GB', 'SSD', 3800000, 'Alta', 5, 'GTX 1650');
+
+-- 6. Insertar productos: Computadores de escritorio
+INSERT INTO productos (nombre, categoria, subcategoria, marca, cpu, gpu, ram, almacenamiento, precio, recomendacion_nivel, recomendacion_stars) VALUES
+-- Menos recomendados
+('PC Básico Home', 'Desktop', 'Menos Recomendado', 'Genérico', 'Intel Pentium G6400', 'Integrada', '8GB DDR4', '240GB SSD', 1100000, 'Baja', 2),
+('PC Económico', 'Desktop', 'Menos Recomendado', 'Genérico', 'AMD A8-9600', 'Integrada', '8GB DDR4', '500GB HDD', 950000, 'Baja', 2),
+('Mini PC Intel NUC', 'Desktop', 'Menos Recomendado', 'Intel', 'Celeron J4005', 'Integrada', '4GB RAM', '128GB', 850000, 'Baja', 2),
+('PC Refurbished', 'Desktop', 'Menos Recomendado', 'Refurbished', 'i3-6100', 'Integrada', '8GB DDR3', '500GB HDD', 720000, 'Baja', 2),
+-- Recomendados
+('PC Oficina', 'Desktop', 'Recomendado', 'Makers Tech', 'Ryzen 5 5600G', 'Integrada', '8GB RAM', '512GB SSD', 1600000, 'Media', 4),
+('PC Gaming Básico', 'Desktop', 'Recomendado', 'Makers Tech', 'Ryzen 5 5600G', 'GTX 1660', '16GB RAM', 'SSD', 2400000, 'Media', 4),
+('PC Gaming Medio', 'Desktop', 'Recomendado', 'Makers Tech', 'Ryzen 7 5700X', 'RTX 4060', '16GB RAM', '1TB SSD', 3600000, 'Media', 4),
+('PC Multimedia', 'Desktop', 'Recomendado', 'Makers Tech', 'i5-12400F', 'GTX 1650', '16GB RAM', '1TB SSD', 2800000, 'Media', 4),
+('PC Diseño', 'Desktop', 'Recomendado', 'Makers Tech', 'Ryzen 7 5700X', 'RTX 3060', '32GB RAM', '1TB NVMe', 4200000, 'Media', 4),
+-- Más recomendados
+('PC Gaming Alto', 'Desktop', 'Más Recomendado', 'Makers Tech', 'Ryzen 7 5800X3D', 'RTX 4070', '32GB RAM', 'SSD', 5200000, 'Alta', 5),
+('PC Gaming Extremo', 'Desktop', 'Más Recomendado', 'Makers Tech', 'Ryzen 9 5900X', 'RTX 4080', '32GB RAM', 'SSD', 7800000, 'Alta', 5),
+('Workstation Pro', 'Desktop', 'Más Recomendado', 'Makers Tech', 'Ryzen 9 5900X', 'RTX A4000', '32GB RAM', 'SSD', 6800000, 'Alta', 5),
+('PC Creator', 'Desktop', 'Más Recomendado', 'Makers Tech', 'i9-12900KF', 'RTX 4070 Ti', '64GB RAM', '2TB NVMe', 8500000, 'Alta', 5),
+('iMac 24&quot;', 'Desktop', 'Más Recomendado', 'Apple', 'Apple M1', 'Integrada', '8GB RAM', '256GB SSD', 5200000, 'Alta', 5),
+('Mac Studio M1 Max', 'Desktop', 'Más Recomendado', 'Apple', 'M1 Max', 'M1 Max GPU', '32GB RAM', '512GB SSD', 9800000, 'Alta', 5);
+
+-- 7. Insertar componentes (Procesadores, GPUs, RAM, etc.)
+INSERT INTO productos (nombre, categoria, subcategoria, cpu, gpu, ram, almacenamiento, precio, recomendacion_nivel, recomendacion_stars) VALUES
+-- Procesadores
+('AMD Ryzen 5 5600G APU', 'CPU', 'Recomendado', 'Ryzen 5 5600G', NULL, NULL, NULL, 480000, 'Media', 4),
+('Intel Core i5-12400F', 'CPU', 'Recomendado', 'i5-12400F', NULL, NULL, NULL, 520000, 'Media', 4),
+('AMD Ryzen 7 5700X', 'CPU', 'Más Recomendado', 'Ryzen 7 5700X', NULL, NULL, NULL, 680000, 'Alta', 5),
+('Intel Core i7-12700F', 'CPU', 'Más Recomendado', 'i7-12700F', NULL, NULL, NULL, 780000, 'Alta', 5),
+('AMD Ryzen 9 5900X', 'CPU', 'Más Recomendado', 'Ryzen 9 5900X', NULL, NULL, NULL, 1080000, 'Alta', 5),
+-- Tarjetas gráficas
+('RTX 4060 8GB', 'GPU', 'Más Recomendado', NULL, 'RTX 4060', NULL, NULL, 1200000, 'Alta', 5),
+('RTX 4070 12GB', 'GPU', 'Más Recomendado', NULL, 'RTX 4070', NULL, NULL, 1800000, 'Alta', 5),
+('RTX A4000 16GB', 'GPU', 'Más Recomendado', NULL, 'RTX A4000', NULL, NULL, 2800000, 'Alta', 5),
+-- RAM
+('16GB DDR4 3200MHz', 'RAM', 'Recomendado', NULL, NULL, '16GB DDR4 3200MHz', NULL, 280000, 'Media', 4),
+('32GB DDR5 6000MHz', 'RAM', 'Más Recomendado', NULL, NULL, '32GB DDR5 6000MHz', NULL, 880000, 'Alta', 5),
+-- Almacenamiento
+('SSD NVMe 1TB 7000MB/s (Gen4)', 'Storage', 'Más Recomendado', NULL, NULL, NULL, '1TB NVMe Gen4', 520000, 'Alta', 5),
+('SSD NVMe 2TB 7000MB/s (Gen4)', 'Storage', 'Más Recomendado', NULL, NULL, NULL, '2TB NVMe Gen4', 980000, 'Alta', 5);
+
+-- 8. (Opcional) Asignar uso recomendado (esto se puede hacer en el backend)
+-- Puedes agregar esta lógica en tu app o usar una tabla separada `uso_producto` si es más complejo.</sql><sql name="SQL 2*">SELECT * FROM productos;</sql><current_tab id="1"/></tab_sql></sqlb_project>

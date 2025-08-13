@@ -1,0 +1,4 @@
+1. https://www.cohorte.co/blog/using-ollama-with-python-step-by-step-guide
+2. https://www.youtube.com/watch?v=al0St5nkp0w
+3. https://github.com/AmitXShukla/GenAI/blob/master/Manualify/src/Manualify.ipynb
+
