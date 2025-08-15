@@ -8,6 +8,21 @@ class DatabaseStock:
 
     def get_connection(self):
         return sqlite3.connect(self.path)
+    
+    def get_data_by_macht(self, s: str):
+        self.conn = self.get_connection()
+        try:
+            cur = self.conn.cursor()
+
+            query = "SELECT * FROM productos WHERE LOWER(nombre) LIKE LOWER(?)"
+            cur.execute(query, (f'%{s}%',))
+            rows = cur.fetchall()
+            return rows
+        except sqlite3.Error as e:
+            print(e)
+            return []
+        finally:
+            self.conn.close()
 
     def get_by_query(self, query: str = ""):
         self.conn = self.get_connection()
@@ -22,12 +37,12 @@ class DatabaseStock:
         finally:
             self.conn.close()
     
-    def update_db(self, name_product: str):
+    def update_db(self, name_product: str, amount: int):
 
         self.conn = self.get_connection()
         try:
             cur = self.conn.cursor()
-            cur.execute("UPDATE productos SET stock = stock - 1 WHERE nombre = ? AND stock > 0;", (name_product,))
+            cur.execute("UPDATE productos SET stock = stock - ? WHERE nombre = ? AND stock > 0;", (amount ,name_product,))
             return True
         
         except sqlite3.Error as e:
