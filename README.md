@@ -35,4 +35,4 @@ For this project, Anaconda virtual environments were used, keep this in mind.
    conda env create -f environment.yml
 ---
 
-2. Download Olama from the official website, which is the AI model manager. The models must be installed: **llama3.2:3b** and **qwen3:1.7b**. You can use any of the two but the important thing is that it has tool compatibility.
+2. Download Olama from the official website, which is the AI model manager. The models must be installed: **llama3.2:3b** and **qwen3:1.7b**. You can use any of the two but the important thing is that it has **tools** compatibility. Visit the following by clicking [here](https://ollama.com/search?c=tools)
