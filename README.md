@@ -18,10 +18,10 @@ This project is about an intelligent model to give recommendations, update infor
 ## 📋 Requisitos
 
 - 🐍 **Python 3.10.18**
-- ⚡ **FastAPI 0.115.5**
-- 🧠 **Ollama 0.4.4**
+- ⚡ **FastAPI**
+- 🧠 **Ollama**
 - 🔗 **LangChain 0.3.7**
-- 💾 **SQLite 3.37** o superior
+- 💾 **SQLite 3** o superior
 - 📱 **WhatsApp Cloud API (latest)**
-- 🐊 **Anaconda (latest)**
-- 🌍 **Ngrok (latest)**
+- 🐊 **Anaconda**
+- 🌍 **Ngrok**
