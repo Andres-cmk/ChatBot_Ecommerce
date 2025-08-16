@@ -10,3 +10,5 @@
 --- 
 
 ## 📝 Description
+
+This project is about an intelligent model to give recommendations, update information and generate reports on the stock of a technology store. To be more portable, it was integrated with WhatsApp, which is why most businesses provide information through that medium.
