@@ -25,3 +25,12 @@ This project is about an intelligent model to give recommendations, update infor
 - 📱 **WhatsApp Cloud API (latest)**
 - 🐊 **Anaconda**
 - 🌍 **Ngrok**
+
+---
+
+## Guide
+For this project, Anaconda virtual environments were used, keep this in mind.
+1. Create env with Anaconda:
+   ```bash
+   conda create -n mi_entorno python=3.10.18
+--
