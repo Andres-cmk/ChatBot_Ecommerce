@@ -30,10 +30,9 @@ This project is about an intelligent model to give recommendations, update infor
 
 ## Guide
 For this project, Anaconda virtual environments were used, keep this in mind.
-1. Recreate the Anaconda virtual environment using in this project using the environment.yml file hosted in this project
+1. Recreate the Anaconda virtual environment using in this project using the environment.yml file hosted in this project. Remember to be in the directory where the file is located.
    ```bash
    conda env create -f environment.yml
 ---
-   remember to be in the directory where the file is located.
 
 2. Descargar ollama desde la pagina oficial, con lo cual es el gestor de modelos de IA. The models must be installed: **llama3.2:3b** and **qwen3:1.7b**. Se pued usar alguno de los 2 pero lo importante es que tenga la compatabilidad de tools.
