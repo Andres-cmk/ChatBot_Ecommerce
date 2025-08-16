@@ -1,8 +1,8 @@
 from ollama import chat
 from ollama import ChatResponse
 from db.connection import DatabaseStock
+from langchain_core.runnables.history import RunnableWithMessageHistory
 from dotenv import load_dotenv
-from whatsapp import WhatsappApi
 import matplotlib.pyplot as plt
 import datetime as dt
 import os
@@ -12,11 +12,10 @@ class ChatBotModel:
   def __init__(self):
     load_dotenv()
     self.secret_pass = os.getenv("PASS_OF_ADMIN")
-    self.name_model = "makers_tech:latest"
+    self.name_model = "llama3.2:3b"
     self.db = DatabaseStock()
-    self.history = {}
 
-  def format_response(self, texto: str) -> str:
+  def format_response(self, texto: str):
     # Eliminar pensamientos (si existen)
     texto = re.sub(r"<think>.*?</think>", "", texto, flags=re.DOTALL)
     # Eliminar markdown: negritas, etc.
@@ -24,16 +23,11 @@ class ChatBotModel:
     # Limpiar espacios extra
     texto = re.sub(r"\n+", "\n", texto.strip())
     return texto.strip()
-    
-  def ask_model(self,prompt: str):
-    response: ChatResponse = chat(model=self.name_model, messages=[
-        {
-          'role': 'user',
-          'content': prompt,
-        },
-      ], )
-    tex_cleaned = self.format_response(str(response.message.content))
-    return tex_cleaned
+  
+  def ask_model(self, text: RunnableWithMessageHistory, message, number):
+        response_text = text.invoke({"question": message}, 
+                        config={"configurable": {"session_id": number, "user_id": number}})
+        return response_text
   
   
   
@@ -70,13 +64,5 @@ class ChatBotModel:
       plt.close()
 
       return path
-  
-  def update_stock_database(self, name: str, p: int):
-    flag = self.db.update_db(name, amount=p)
-    if flag:
-      return "Ok"
-    else:
-      return "NOT OK"
-    
 
   

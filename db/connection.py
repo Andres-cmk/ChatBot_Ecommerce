@@ -37,20 +37,5 @@ class DatabaseStock:
         finally:
             self.conn.close()
     
-    def update_db(self, name_product: str, amount: int):
-
-        self.conn = self.get_connection()
-        try:
-            cur = self.conn.cursor()
-            cur.execute("UPDATE productos SET stock = stock - ? WHERE nombre = ? AND stock > 0;", (amount ,name_product,))
-            return True
-        
-        except sqlite3.Error as e:
-            print(e)
-            return False
-        finally:
-            self.conn.commit()
-            self.conn.close()
-    
 
 

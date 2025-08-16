@@ -5,5 +5,6 @@
 5. https://github.com/ollama/ollama/blob/main/docs/api.md#generate-a-chat-completion
 6. https://github.com/ollama/ollama-python/blob/main/examples/chat-with-history.py
 7. https://medium.com/%40armandaneshdoost/building-a-context-aware-chatbot-with-langchain-and-ollama-a-beginners-guide-b6227ba035d9
+8. https://dev.to/jamesbmour/langchain-part-4-leveraging-memory-and-storage-in-langchain-a-comprehensive-guide-h4m
 
 
