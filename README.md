@@ -30,13 +30,6 @@ This project is about an intelligent model to give recommendations, update infor
 
 ## Guide
 For this project, Anaconda virtual environments were used, keep this in mind.
-1. Create env with Anaconda:
+1. Recreate the Anaconda virtual environment using in this project using the environment.yml file hosted in this project
    ```bash
-   conda create -n mi_entorno python=3.10.18
-
-Additionally, in this project an environment.yml file will be left to build everything with Anaconda as follows:
-
-```bash
-conda env create -f environment.yml
-
-This way it is easier to recreate the entire python environment
+   conda env create -f environment.yml
