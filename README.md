@@ -14,3 +14,14 @@
 ## 📝 Description
 
 This project is about an intelligent model to give recommendations, update information and generate reports on the stock of a technology store. To be more portable, it was integrated with WhatsApp, which is why most businesses provide information through that medium.
+
+## 📋 Requisitos
+
+- 🐍 **Python 3.10.18**
+- ⚡ **FastAPI 0.115.5**
+- 🧠 **Ollama 0.4.4**
+- 🔗 **LangChain 0.3.7**
+- 💾 **SQLite 3.37** o superior
+- 📱 **WhatsApp Cloud API (latest)**
+- 🐊 **Anaconda (latest)**
+- 🌍 **Ngrok (latest)**
