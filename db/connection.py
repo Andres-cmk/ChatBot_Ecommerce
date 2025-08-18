@@ -9,6 +9,21 @@ class DatabaseStock:
     def get_connection(self):
         return sqlite3.connect(self.path)
     
+    def get_amount(self, product: str):
+        self.conn = self.get_connection()
+        try:
+            cur = self.conn.cursor()
+
+            query = "SELECT nombre, stock FROM productos WHERE LOWER(nombre) LIKE(?)"
+            cur.execute(query, (f'%{product}',))
+            rows = cur.fetchall()
+            return rows
+        except sqlite3.Error as e:
+            print(e)
+            return []
+        finally:
+            self.conn.close()
+
     def get_data_by_macht(self, s: str):
         self.conn = self.get_connection()
         try:

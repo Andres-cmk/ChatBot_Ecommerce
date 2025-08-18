@@ -1,6 +1,5 @@
-from ollama import chat
-from ollama import ChatResponse
 from db.connection import DatabaseStock
+from ollama import chat
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from dotenv import load_dotenv
 import matplotlib.pyplot as plt
@@ -12,7 +11,7 @@ class ChatBotModel:
   def __init__(self):
     load_dotenv()
     self.secret_pass = os.getenv("PASS_OF_ADMIN")
-    self.name_model = "llama3.2:3b"
+    self.name_model = "makers_tech:latest"
     self.db = DatabaseStock()
 
   def format_response(self, texto: str):
@@ -24,12 +23,26 @@ class ChatBotModel:
     texto = re.sub(r"\n+", "\n", texto.strip())
     return texto.strip()
   
-  def ask_model(self, text: RunnableWithMessageHistory, message, number):
-        response_text = text.invoke({"question": message}, 
-                        config={"configurable": {"session_id": number, "user_id": number}})
-        return response_text
-  
-  
+  def get_amount_stock(self, product_stock):
+     data = self.db.get_amount(product=product_stock)
+     return data
+
+  def db_model(self, text):
+        chat(
+           model=self.name_model,
+           messages=[
+              {'role': "system",
+               "content": f""" con base a la informacion {text} aprende de cada key del json, entiende cada producto de la base como:
+               categoria: si es laptop, Desktop
+               subcategoria: menos recomendada - mas recomendada
+               precio: precio del producto,
+               stock: cantidad de producto en stock 
+               
+               con eso datos guardalos y si el cliente pide informacion como: "¿Cuantos tienes de ese modelo?", "Precio de ese producto?" 
+                SIEMPRE PROPORCIONA la categoria y subcategoria de cada producto" """},
+              { "role":"user", "content": text}]
+        )
+        return True
   
   def generate_image_stock(self):
      data = self.db.get_by_query("SELECT nombre, stock FROM productos WHERE stock > 0")
