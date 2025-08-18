@@ -22,7 +22,7 @@ This project is about an intelligent model to give recommendations, update infor
 - 🧠 **Ollama**
 - 🔗 **LangChain 0.3.7**
 - 💾 **SQLite 3** o superior
-- 📱 **(WhatsApp Cloud API)[https://developers.facebook.com/products/whatsapp/]**
+- 📱 **[WhatsApp Cloud API](https://developers.facebook.com/products/whatsapp/)**
 - 🐊 **Anaconda**
 - 🌍 **Ngrok**
 
